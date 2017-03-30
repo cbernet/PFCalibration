@@ -32,7 +32,7 @@ process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(10)
+    input = cms.untracked.int32(1000)
 )
 
 # Input source
@@ -78,12 +78,12 @@ process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:mc', '')
 process.generator = cms.EDProducer("FlatRandomEGunProducer",
     PGunParameters = cms.PSet(
         PartID = cms.vint32(-211), #PDGID
-        MaxEta = cms.double(3.0),
+        MaxEta = cms.double(0.5),
         MaxPhi = cms.double(3.14159265359),
-        MinEta = cms.double(-3.0),
-        MinE = cms.double(200),  #Min Pt
+        MinEta = cms.double(-0.5),
+        MinE = cms.double(0),  #Min Pt
         MinPhi = cms.double(-3.14159265359),
-        MaxE = cms.double(500) #Max Pt
+        MaxE = cms.double(100) #Max Pt
     ),
     Verbosity = cms.untracked.int32(0),
     psethack = cms.string('single pi0 E 10'),
@@ -175,7 +175,7 @@ process.raw2digi_step = cms.Path(process.RawToDigi)
 process.reconstruction_step = cms.Path(process.reconstruction)
 process.genfiltersummary_step = cms.EndPath(process.genFilterSummary)
 process.endjob_step = cms.EndPath(process.endOfProcess)
-process.RECOSIMoutput_step = cms.EndPath(process.RECOSIMoutput)
+# process.RECOSIMoutput_step = cms.EndPath(process.RECOSIMoutput)
 process.bla = cms.EndPath(process.pfChargedHadronAnalyzer)
 process.blo = cms.EndPath(process.genReReco)
 # Schedule definition
