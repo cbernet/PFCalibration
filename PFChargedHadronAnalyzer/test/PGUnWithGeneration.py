@@ -70,9 +70,9 @@ process.RECOSIMoutput = cms.OutputModule("PoolOutputModule",
 # Other statements
 process.genstepfilter.triggerConditions=cms.vstring("generation_step")
 from Configuration.AlCa.GlobalTag import GlobalTag
-#process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:mc', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:mc', '')
 #process.GlobalTag = GlobalTag(process.GlobalTag, '80X_mcRun2_asymptotic_2016_TrancheIV_v6', '')
-process.GlobalTag = GlobalTag(process.GlobalTag, '81X_upgrade2017_realistic_v22', '')
+#process.GlobalTag = GlobalTag(process.GlobalTag, '81X_upgrade2017_realistic_v22', '')
 
 
 process.generator = cms.EDProducer("FlatRandomEGunProducer",
@@ -149,9 +149,11 @@ process.particleFlowSimParticle.ParticleFilter = cms.PSet(
         # Particles must have abs(eta) < etaMax (if close enough to 0,0,0)
         etaMax = cms.double(5.3),
         # Charged particles with pT < pTMin (GeV/c) are not simulated
-        chargedPtMin = cms.double(0.0),
+        pTMin = cms.double(0.0),
         # Particles must have energy greater than EMin [GeV]
-        EMin = cms.double(0.0))
+        EMin = cms.double(0.0),
+	EProton = cms.double(8000))
+
 
 process.genReReco = cms.Sequence(#process.generator+
                                  #process.genParticles+
